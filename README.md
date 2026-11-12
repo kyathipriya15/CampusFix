@@ -2,7 +2,7 @@
 
 **An original educational full-stack Java project scaffold.** CampusFix lets students report campus maintenance issues and lets a facilities operator review, prioritize, and resolve them. It includes a responsive Thymeleaf UI, Java/Spring Boot backend, persistence through Spring Data JPA, REST APIs, and test cases for the rules engine.
 
-> **Project status:** Educational MVP/source package, **not** hosted on GitHub or verified in a full Maven run yet. Code must be installed, tested, understood and customized by the student before any completed-project claim or job application. No real authentication is implemented; use only on localhost with synthetic data.
+> **Project Status:** Functional Java Full-Stack MVP, successfully built and tested locally using Java 21 and Maven. All 4 JUnit tests passed. Ticket creation, priority assignment, status updates, and dashboard functionality were verified. Source code is publicly available on GitHub. The application is not publicly deployed and does not yet include authentication.
 
 ## Why this is more than a basic CRUD project
 
@@ -68,8 +68,9 @@ curl -X PATCH http://localhost:8080/api/tickets/1/status   -H 'Content-Type: app
 - Duplicate detection is a simple demo rule, **not concurrency-safe** without a stronger database constraint/transaction strategy.
 - SLA is a demo rule, not a college policy. It calculates due time; no real-time notifications or scheduler yet.
 - There are **no student/admin accounts, authorization, file uploads or security protections**. Do not deploy the demo publicly as-is.
-- The `TicketPolicyTest` JUnit tests are included but **Maven verification was not possible in the creation environment**. Run `mvn clean test` locally and fix anything reported before publishing.
-
+- **Testing:** Successfully executed `mvn clean test` with 4 JUnit tests passing (0 failures, 0 errors).
+- **Manual Verification:** Tested ticket creation, automatic priority assignment, status updates, and dashboard filtering.
+f
 ## Recommended contributions by the student (before claiming ownership)
 1. Set up the project locally and record a working demo (2 min).
 2. Add login, role-based access and authorization (Spring Security) or clearly describe why MVP is local only.
@@ -78,7 +79,13 @@ curl -X PATCH http://localhost:8080/api/tickets/1/status   -H 'Content-Type: app
 5. Write screenshots and document precisely what you implemented yourself.
 
 ## Repository publishing
-See [`docs/PUBLISH_TO_GITHUB.md`](docs/PUBLISH_TO_GITHUB.md). Do not add a GitHub repository link to the resume until the repository is public, has working setup steps and has been tested by its owner.
+## GitHub Repository
+
+**Source Code:** https://github.com/kyathipriya15/CampusFix
+
+**Branch:** main
+
+**Status:** Public repository with working source code, setup instructions, and unit tests.
 
 ## Attribution
 This scaffold was generated with AI assistance. The student should disclose tool use where required by their college/interviewer, understand and improve all code, and accurately describe their own contribution. No third-party repo was copied into this package.
