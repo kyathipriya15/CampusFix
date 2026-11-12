@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Report an issue | CampusFix</title><link rel="stylesheet" th:href="@{/style.css}"></head><body><div class="shell"><header class="bar"><a class="logo" href="/">Campus<span>Fix</span></a><span class="tag">New maintenance issue</span></header>
+<main class="narrow"><a class="back" href="/">← Back to dashboard</a><div class="eyebrow">NEW REQUEST</div><h1>Report an issue</h1><p>Provide a clear description and exact location to help prioritize the work.</p>
+<div class="notice err" th:if="${error}" th:text="${error}"></div>
+<form class="panel fields" action="/tickets" method="post"><label>Issue title<input name="title" maxlength="100" required placeholder="e.g. Projector not switching on"></label>
+<label>Description<textarea name="description" maxlength="1000" rows="5" required placeholder="What is happening? How severe is it?"></textarea></label>
+<label>Category<select name="category" required><option value="">Choose category</option><option th:each="c : ${categories}" th:value="${c}" th:text="${c}"></option></select></label>
+<div class="two"><label>Building<input name="building" maxlength="80" required placeholder="e.g. Academic Block B"></label><label>Room / area<input name="room" maxlength="24" required placeholder="e.g. B-204"></label></div>
+<p class="help">Safety hazards (e.g., sparks or exposed wire) receive critical priority automatically.</p><button class="btn full" type="submit">Submit issue</button></form></main></div></body></html>

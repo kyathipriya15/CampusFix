@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"><head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CampusFix | Maintenance overview</title><link rel="stylesheet" th:href="@{/style.css}">
+</head><body><div class="shell"><header class="bar"><a class="logo" href="/">Campus<span>Fix</span></a><span class="tag">Facilities Desk · Demo</span></header>
+  <main>
+    <div class="topline"><div><div class="eyebrow">CAMPUS OPERATIONS</div><h1>Facilities, under control.</h1><p>Report, prioritize and track college maintenance issues in one place.</p></div>
+      <a class="btn" href="/tickets/new">+ Report an issue</a></div>
+    <div class="notice ok" th:if="${success}" th:text="${success}"></div>
+    <section class="metrics"><div><span>All tickets</span><strong th:text="${total}">0</strong></div><div><span>Open</span><strong th:text="${open}">0</strong></div>
+      <div><span>In progress</span><strong th:text="${progress}">0</strong></div><div><span>Overdue</span><strong th:text="${overdue}">0</strong></div></section>
+    <section class="panel"><div class="panel-heading"><div><h2>Maintenance queue</h2><p>Urgency and due dates are assigned automatically</p></div></div>
+      <form method="get" action="/" class="filters"><input name="search" placeholder="Search issue, building or room" th:value="${search}">
+        <select name="status"><option value="" th:selected="${status == ''}">All statuses</option><option value="OPEN" th:selected="${status == 'OPEN'}">Open</option><option value="IN_PROGRESS" th:selected="${status == 'IN_PROGRESS'}">In progress</option><option value="RESOLVED" th:selected="${status == 'RESOLVED'}">Resolved</option></select>
+        <button class="btn outline" type="submit">Filter</button></form>
+      <div class="table-wrap"><table><thead><tr><th>Issue</th><th>Location</th><th>Priority</th><th>Status</th><th>Due</th></tr></thead>
+        <tbody><tr th:each="t : ${tickets}"><td><a th:href="@{/tickets/{id}(id=${t.id})}" th:text="${t.title}">Issue</a><small th:text="${'#' + t.id + ' · ' + t.category}"></small></td>
+          <td th:text="${t.building + ' / ' + t.room}">Block A / 101</td><td><span class="chip" th:classappend="${t.priority.name().toLowerCase()}" th:text="${t.priority}">HIGH</span></td>
+          <td th:text="${t.status}">OPEN</td><td th:text="${#temporals.format(t.dueAt,'dd MMM, HH:mm')}">time</td></tr>
+          <tr th:if="${#lists.isEmpty(tickets)}"><td colspan="5" class="empty">No matching tickets. Add the first issue to see the workflow.</td></tr>
+        </tbody></table></div>
+    </section><footer>Local demonstration project · Do not use for live campus submissions without authentication.</footer>
+  </main></div></body></html>
